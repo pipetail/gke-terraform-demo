@@ -15,11 +15,11 @@ module "vpc" {
     },
     {
       subnet_name           = "private"
-      subnet_ip             = "10.10.20.0/24"
+      subnet_ip             = "10.10.11.0/24"
       subnet_region         = var.region
       subnet_private_access = "true"
       subnet_flow_logs      = "true"
-      description           = "This subnet has a description"
+      description           = "private subnet for gke nodes"
     }
   ]
 
@@ -27,12 +27,12 @@ module "vpc" {
     private = [
       {
         range_name    = "kube-pods"
-        ip_cidr_range = var.vpc_secondary_cidr_block
+        ip_cidr_range = "10.4.0.0/16"
       },
 
       {
         range_name    = "kube-services"
-        ip_cidr_range = var.public_services_secondary_cidr_block
+        ip_cidr_range = "10.5.0.0/19"
       },
     ]
   }
