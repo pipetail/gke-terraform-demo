@@ -1,0 +1,53 @@
+resource "google_compute_managed_ssl_certificate" "jarvis-dev-indykite" {
+  provider = google-beta
+
+  name = "jarvis-dev-cert"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  managed {
+    domains = ["jarvis-dev.indykite.com."]
+  }
+
+  depends_on = [
+    google_project_service.services["compute.googleapis.com"],
+  ]
+}
+
+resource "google_compute_managed_ssl_certificate" "graph-dev-indykite" {
+  provider = google-beta
+
+  name = "jarvis-graph-dev-cert"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  managed {
+    domains = ["graph-dev.indykite.com."]
+  }
+
+  depends_on = [
+    google_project_service.services["compute.googleapis.com"],
+  ]
+}
+
+resource "google_compute_managed_ssl_certificate" "argo-dev-indykite" {
+  provider = google-beta
+
+  name = "argo-dev-cert"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  managed {
+    domains = ["argo-dev.indykite.com."]
+  }
+
+  depends_on = [
+    google_project_service.services["compute.googleapis.com"],
+  ]
+}

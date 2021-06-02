@@ -1,0 +1,28 @@
+resource "google_dns_record_set" "frontend-www" {
+  name = "www.${google_dns_managed_zone.test.dns_name}"
+  type = "A"
+  ttl  = 60
+
+  managed_zone = google_dns_managed_zone.test.name
+
+  rrdatas = [module.gce-lb-https.external_ip]
+}
+
+resource "google_dns_record_set" "frontend" {
+  name = google_dns_managed_zone.test.dns_name
+  type = "A"
+  ttl  = 60
+
+  managed_zone = google_dns_managed_zone.test.name
+
+  rrdatas = [module.gce-lb-https.external_ip]
+}
+
+resource "google_dns_managed_zone" "test" {
+  name     = "test"
+  dns_name = "indykite.pipetail.cloud."
+
+  depends_on = [
+    google_project_service.services["dns.googleapis.com"],
+  ]
+}
