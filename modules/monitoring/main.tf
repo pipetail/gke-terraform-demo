@@ -17,10 +17,6 @@ resource "google_monitoring_uptime_check_config" "http" {
       host       = var.host
     }
   }
-
-  content_matchers {
-    content = "ok"
-  }
 }
 
 resource "google_monitoring_notification_channel" "email" {
