@@ -1,0 +1,27 @@
+steps:
+  - name: 'hashicorp/terraform:1.0.1'
+    dir: 'dev'
+    args:
+      - init
+      - -no-color
+
+  - name: 'hashicorp/terraform:1.0.1'
+    dir: 'dev'
+    args:
+      - fmt
+      - -check
+      - -diff
+      - -no-color
+
+  - name: 'hashicorp/terraform:1.0.1'
+    dir: 'dev'
+    args:
+      - validate
+      - -no-color
+
+  - name: 'hashicorp/terraform:1.0.1'
+    dir: 'dev'
+    args:
+      - plan
+      - -lock=false
+      - -no-color
